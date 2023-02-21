@@ -4,7 +4,7 @@ import 'package:device_sim/device_sim.dart';
 import 'package:flutter/material.dart';
 import 'ffi.dart' if (dart.library.html) 'ffi_web.dart';
 
-const bool debugEnableDeviceSimulator = false;
+const bool debugEnableDeviceSimulator = true;
 
 void main() => runApp(const MyApp());
 
