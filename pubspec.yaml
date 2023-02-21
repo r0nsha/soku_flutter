@@ -38,6 +38,7 @@ dependencies:
   flutter_rust_bridge: ^1.45.0
   meta: ^1.8.0
   freezed_annotation: ^2.2.0
+  device_sim: ^0.1.1
 
 dev_dependencies:
   flutter_test:
