@@ -1,6 +1,11 @@
 use super::*;
 // Section: wire functions
 
+#[no_mangle]
+pub extern "C" fn wire_sudoku(port_: i64) {
+    wire_sudoku_impl(port_)
+}
+
 // Section: allocate functions
 
 // Section: related functions

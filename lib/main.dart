@@ -1,10 +1,12 @@
 // import 'dart:ffi';
 
 import 'package:device_sim/device_sim.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:soku/shared.dart';
 import 'ffi.dart' if (dart.library.html) 'ffi_web.dart';
 
-const bool debugEnableDeviceSimulator = true;
+const bool debugEnableDeviceSimulator = kDebugMode;
 
 void main() => runApp(const MyApp());
 
@@ -29,6 +31,7 @@ class MyApp extends StatelessWidget {
                   title: const Text('DeviceSimulator Demo'),
                 ),
                 body: const Center(
+                  // child: Text('Hello multiple resolutions!'),
                   child: Text('Hello multiple resolutions!'),
                 ),
               ));

@@ -9,4 +9,67 @@ import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge.dart';
 
-abstract class Native {}
+import 'package:collection/collection.dart';
+
+abstract class Native {
+  Future<Sudoku> sudoku({dynamic hint});
+
+  FlutterRustBridgeTaskConstMeta get kSudokuConstMeta;
+}
+
+class CellArray81 extends NonGrowableListView<Cell> {
+  static const arraySize = 81;
+  CellArray81(List<Cell> inner)
+      : assert(inner.length == arraySize),
+        super(inner);
+  CellArray81.unchecked(List<Cell> inner) : super(inner);
+  CellArray81.init(Cell fill) : super(List<Cell>.filled(arraySize, fill));
+}
+
+class Candidates {
+  final int field0;
+
+  Candidates({
+    required this.field0,
+  });
+}
+
+class Cell {
+  final Coord coord;
+  final Digit? digit;
+  final bool isGiven;
+  final Candidates candidates;
+
+  Cell({
+    required this.coord,
+    this.digit,
+    required this.isGiven,
+    required this.candidates,
+  });
+}
+
+class Coord {
+  final int field0;
+  final int field1;
+
+  Coord({
+    required this.field0,
+    required this.field1,
+  });
+}
+
+class Digit {
+  final int field0;
+
+  Digit({
+    required this.field0,
+  });
+}
+
+class Sudoku {
+  final CellArray81 field0;
+
+  Sudoku({
+    required this.field0,
+  });
+}
