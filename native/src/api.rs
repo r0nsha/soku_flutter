@@ -1,5 +1,5 @@
 use flutter_rust_bridge::frb;
-use soku::prelude::*;
+pub use soku::prelude::*;
 
 pub fn sudoku() -> Sudoku {
     Sudoku::new_unique(Config {

@@ -15,6 +15,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // api.sudoku().then((sudoku) {
+      // print("$sudoku.field0");
+    // });
+
     return DeviceSim(
         isEnabled: debugEnableDeviceSimulator,
         devices: const [googlePixel5, iphone13, iphone13ProMax, ipad129Gen5],
