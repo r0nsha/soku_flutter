@@ -19,103 +19,10 @@ class NativeImpl implements Native {
   factory NativeImpl.wasm(FutureOr<WasmModule> module) =>
       NativeImpl(module as ExternalLibrary);
   NativeImpl.raw(this._platform);
-  Future<Sudoku> sudoku({dynamic hint}) {
-    return _platform.executeNormal(FlutterRustBridgeTask(
-      callFfi: (port_) => _platform.inner.wire_sudoku(port_),
-      parseSuccessData: _wire2api_sudoku,
-      constMeta: kSudokuConstMeta,
-      argValues: [],
-      hint: hint,
-    ));
-  }
-
-  FlutterRustBridgeTaskConstMeta get kSudokuConstMeta =>
-      const FlutterRustBridgeTaskConstMeta(
-        debugName: "sudoku",
-        argNames: [],
-      );
-
   void dispose() {
     _platform.dispose();
   }
 // Section: wire2api
-
-  CellArray81 _wire2api_Cell_array_81(dynamic raw) {
-    return CellArray81((raw as List<dynamic>).map(_wire2api_cell).toList());
-  }
-
-  bool _wire2api_bool(dynamic raw) {
-    return raw as bool;
-  }
-
-  Digit _wire2api_box_autoadd_digit(dynamic raw) {
-    return _wire2api_digit(raw);
-  }
-
-  Candidates _wire2api_candidates(dynamic raw) {
-    final arr = raw as List<dynamic>;
-    if (arr.length != 1)
-      throw Exception('unexpected arr length: expect 1 but see ${arr.length}');
-    return Candidates(
-      field0: _wire2api_usize(arr[0]),
-    );
-  }
-
-  Cell _wire2api_cell(dynamic raw) {
-    final arr = raw as List<dynamic>;
-    if (arr.length != 4)
-      throw Exception('unexpected arr length: expect 4 but see ${arr.length}');
-    return Cell(
-      coord: _wire2api_coord(arr[0]),
-      digit: _wire2api_opt_box_autoadd_digit(arr[1]),
-      isGiven: _wire2api_bool(arr[2]),
-      candidates: _wire2api_candidates(arr[3]),
-    );
-  }
-
-  Coord _wire2api_coord(dynamic raw) {
-    final arr = raw as List<dynamic>;
-    if (arr.length != 2)
-      throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
-    return Coord(
-      field0: _wire2api_usize(arr[0]),
-      field1: _wire2api_usize(arr[1]),
-    );
-  }
-
-  Digit _wire2api_digit(dynamic raw) {
-    final arr = raw as List<dynamic>;
-    if (arr.length != 1)
-      throw Exception('unexpected arr length: expect 1 but see ${arr.length}');
-    return Digit(
-      field0: _wire2api_u8(arr[0]),
-    );
-  }
-
-  List<Cell> _wire2api_list_cell(dynamic raw) {
-    return (raw as List<dynamic>).map(_wire2api_cell).toList();
-  }
-
-  Digit? _wire2api_opt_box_autoadd_digit(dynamic raw) {
-    return raw == null ? null : _wire2api_box_autoadd_digit(raw);
-  }
-
-  Sudoku _wire2api_sudoku(dynamic raw) {
-    final arr = raw as List<dynamic>;
-    if (arr.length != 1)
-      throw Exception('unexpected arr length: expect 1 but see ${arr.length}');
-    return Sudoku(
-      field0: _wire2api_Cell_array_81(arr[0]),
-    );
-  }
-
-  int _wire2api_u8(dynamic raw) {
-    return raw as int;
-  }
-
-  int _wire2api_usize(dynamic raw) {
-    return castInt(raw);
-  }
 }
 
 // Section: api2wire
